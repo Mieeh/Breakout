@@ -7,6 +7,7 @@
 
 #include"SFML\Graphics.hpp"
 #include"Constants.h"
+#include"Scene.h"
 
 class Game {
 public: 
