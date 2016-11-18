@@ -4,6 +4,10 @@
 #define CONSTANTS_H
 
 /*
+* Default constant values used my more than one class 
+*/
+
+/*
 #define FPS 60
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600

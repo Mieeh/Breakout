@@ -15,7 +15,7 @@ public:
 	~Scene();
 	void onEvent(const sf::Event event);
 	void draw(sf::RenderTarget &target);
-	void update(float deltaTime);
+	void update(float frameTime);
 private:
 	Paddle *player;
 };

@@ -22,9 +22,8 @@ int Game::run() {
 		while (renderWindow.pollEvent(event)) { // Event loop starts here
 			if (event.type == sf::Event::Closed)
 				renderWindow.close();
-			mainScene.onEvent(event);
+			mainScene.onEvent(event); 
 		}
-
 		// Draw stuff under here
 		renderWindow.clear();
 

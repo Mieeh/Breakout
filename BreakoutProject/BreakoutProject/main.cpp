@@ -1,12 +1,9 @@
-#include<iostream>
 #include"Game.h"
-#include"Paddle.h"
 
 int main() 
 {
-	Game game;
-	game.run();
+	Game game; // Create game instance 
+	game.run(); // Run the game loop
 
-	system("pause");
 	return 0;
 }
