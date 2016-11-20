@@ -6,7 +6,7 @@ Game::~Game() {
 }
 
 Game::Game() {
-
+	gameState = GameState::PLAYING;
 }
 
 int Game::run() {
@@ -25,10 +25,16 @@ int Game::run() {
 			mainScene.onEvent(event); 
 		}
 		// Draw stuff under here
-		renderWindow.clear();
+		renderWindow.clear(sf::Color(6,6,6,255));
 
-		mainScene.update(clock.restart().asMilliseconds());
-		mainScene.draw(renderWindow);
+		/*
+		* Check what current state the game is in
+		* to decide what scene we should update and draw
+		*/
+		if (gameState == GameState::PLAYING) {
+			mainScene.update(clock.restart().asMilliseconds());
+			mainScene.draw(renderWindow);
+		}
 
 		renderWindow.display();
 	}

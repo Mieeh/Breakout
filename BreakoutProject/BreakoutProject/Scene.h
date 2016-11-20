@@ -2,6 +2,7 @@
 
 #include"SFML\Graphics.hpp"
 #include"Paddle.h"
+#include"Ball.h"
 
 /*
 * This class will hold all the game objects
@@ -18,4 +19,5 @@ public:
 	void update(float frameTime);
 private:
 	Paddle *player;
+	Ball *ball;
 };

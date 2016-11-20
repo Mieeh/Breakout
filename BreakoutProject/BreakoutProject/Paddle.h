@@ -1,6 +1,7 @@
 #pragma once
 
 #include"GameObject.h"
+#include"Ball.h"
 
 #include"Constants.h"
 
@@ -29,7 +30,7 @@ public:
 	// \brief Handles collision with the ball and the window bounds
 	// \brief When collided with ball send signal to ball that it has to bounce and the position of the collision
 	/////////////////////
-	void collision(); 
+	void collision(Ball& ball); 
 
 private:
 	sf::RectangleShape shape;

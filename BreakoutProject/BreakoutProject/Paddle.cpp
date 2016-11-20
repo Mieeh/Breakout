@@ -23,7 +23,6 @@ void Paddle::start() {
 
 void Paddle::update(float frameTime) {
 	this->move(frameTime);
-	this->collision();
 }
 
 void Paddle::onEvent(sf::Event &event) {
@@ -62,10 +61,14 @@ void Paddle::resetPosition() {
 	shape.setPosition(sf::Vector2f(0, 0));
 }
 
-void Paddle::collision() {
+void Paddle::collision(Ball& ball) {
 	// Checks for ball and wall collisions
-	// When colliding with a wall accerlation should smoothly stop
+	// Ball Collision
+	if (shape.getGlobalBounds().intersects(ball.getShape().getGlobalBounds())) {
+		ball.
+	}
 
+	// When colliding with a wall velocity becomes zero
 	// Constraining paddle to the screen dimensions
 	if (shape.getPosition().x < 0)
 		shape.setPosition(sf::Vector2f(0, shape.getPosition().y));

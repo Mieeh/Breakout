@@ -19,4 +19,6 @@ public:
 private:
 	bool isRunning;
 	sf::RenderWindow renderWindow;
+	enum GameState{MENU,PLAYING};
+	GameState gameState;
 };
