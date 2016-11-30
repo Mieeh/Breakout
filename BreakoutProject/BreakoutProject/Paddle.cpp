@@ -13,7 +13,6 @@ void Paddle::start() {
 	// Move attributes
 	currentVelocity = 0;
 	moveDirection = 0;
-	std::cout << "Accerlation: " << accerlation << std::endl;
 
 	// Coloring, re-sizing and setting position
 	shape.setFillColor(sf::Color::Red);
@@ -65,7 +64,11 @@ void Paddle::collision(Ball& ball) {
 	// Checks for ball and wall collisions
 	// Ball Collision
 	if (shape.getGlobalBounds().intersects(ball.getShape().getGlobalBounds())) {
-		ball.
+		// TODO: Implement hit factor functionality
+		float hitFactor = 1; // Distance from the middle point of paddle to the balls middle point
+		//hitFactor = (shape.getPosition().x + (PADDLE_WIDTH / 2)) - (ball.getShape().getPosition().x - BALL_RADIUS);
+		//std::cout << hitFactor << std::endl;
+		ball.paddle_collision(hitFactor); // Sending message to the ball that collision with paddle happend
 	}
 
 	// When colliding with a wall velocity becomes zero

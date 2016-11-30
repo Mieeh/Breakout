@@ -3,6 +3,11 @@
 #include"SFML\Graphics.hpp"
 #include"Paddle.h"
 #include"Ball.h"
+#include"Brick.h"
+#include<vector>
+
+#ifndef SCENE
+#define SCENE
 
 /*
 * This class will hold all the game objects
@@ -17,7 +22,16 @@ public:
 	void onEvent(const sf::Event event);
 	void draw(sf::RenderTarget &target);
 	void update(float frameTime);
+
+	/////////////////////
+	// \brief Sets up a new board with new bricks
+	// 
+	/////////////////////
+	void newBoardSetup();
+
 private:
-	Paddle *player;
-	Ball *ball;
+	Paddle *player; // Paddle instance ie player
+	Ball *ball; // Ball instance 
+	std::vector<Brick*> bricks; // All the bricks for the game
 };
+#endif
