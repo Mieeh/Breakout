@@ -44,16 +44,15 @@ void Ball::bricks_collision(std::vector<Brick*> bricks)
 			//printf("BALL COLLIDED WITH A BRICK");
 			//bricks.at(i)->getShape().setFillColor(sf::Color::Blue);
 
-			/* 
-			* Subtracting 4 because this code is called after the ball is inside the brick
-			* Which means this wont be called unless we take that small frame into account
-			*/
-			if (shape.getPosition().y >= (bricks.at(i)->getShape().getPosition().y + BRICK_HEIGHT-4) ||
-				shape.getPosition().y <= (bricks.at(i)->getShape().getPosition().y-4)) {
-				velocityY *= -1;
-			}
-			else if (shape.getPosition().x >= (bricks.at(i)->getShape().getPosition().x + BRICK_WIDTH - 4) ||
-				shape.getPosition().x <= (bricks.at(i)->getShape().getPosition().x-4)) {
+			sf::FloatRect ballBoundingBox = shape.getGlobalBounds();
+			sf::FloatRect brickBoundingBox = shape.getGlobalBounds();
+
+			if (ballBoundingBox.top >= brickBoundingBox.height || ballBoundingBox.height <= brickBoundingBox.top) 
+				if(ballBoundingBox.left > brickBoundingBox.left && ballBoundingBox.width < brickBoundingBox.width)
+					velocityY *= -1;
+
+			else if (ballBoundingBox.width <= brickBoundingBox.left) {
+				printf("Hello");
 				velocityX *= -1;
 			}
 		}

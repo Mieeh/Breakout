@@ -38,6 +38,6 @@ private:
 	sf::CircleShape shape;
 
 	// Move attributes
-	double			 velocityX=0.5;		// Speed of the ball in the x direction
+	double			 velocityX=0.2;		// Speed of the ball in the x direction
 	double			 velocityY=-0.4;	// Speed of the ball in the y direction
 };

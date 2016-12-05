@@ -17,7 +17,7 @@ void Paddle::start() {
 	// Coloring, re-sizing and setting position
 	shape.setFillColor(sf::Color::Red);
 	shape.setSize(sf::Vector2f(PADDLE_WIDTH, PADDLE_HEIGHT));
-	shape.setPosition(WINDOW_WIDTH/2 - (PADDLE_WIDTH / 2), WINDOW_HEIGHT - PADDLE_HEIGHT * 11);
+	shape.setPosition(WINDOW_WIDTH/2 - (PADDLE_WIDTH / 2), WINDOW_HEIGHT - PADDLE_HEIGHT * 5);
 }
 
 void Paddle::update(float frameTime) {

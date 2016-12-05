@@ -1,8 +1,6 @@
 #include"Scene.h"
 
 Scene::Scene() {
-	player = new Paddle();
-	ball = new Ball();
 	newBoardSetup();
 }
 
@@ -27,14 +25,15 @@ void Scene::onEvent(const sf::Event event) {
 }
 
 void Scene::newBoardSetup() {
-
+	player = new Paddle();
+	ball = new Ball();
 	// Fills the bricks vector with new bricks
 	// This loop represents y value
-	for (int current_column = 0; current_column < 3; current_column++) {
+	for (int current_column = 0; current_column < 1; current_column++) {
 		// This loop represents x value
-		for (int x = 0; x < 7; x++) {
+		for (int x = 0; x < 1; x++) {
 			// Create and fill the bricks vector here
-			bricks.push_back(new Brick(sf::Vector2f((x+1) * BRICK_OFFSET_X,(current_column+0.5) * BRICKS_OFFSET_Y)));
+			bricks.push_back(new Brick(sf::Vector2f((x+1+7) * BRICK_OFFSET_X,(current_column+.5) * BRICKS_OFFSET_Y)));
 		}
 	}
 }
