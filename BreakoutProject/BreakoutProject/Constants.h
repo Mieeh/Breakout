@@ -27,11 +27,11 @@ static const double PADDLE_HEIGHT = 13;
 static const double PADDLE_SPEED = 0.7;
 
 // Brick values
-static const double BRICK_WIDTH = 50;
-static const double BRICK_HEIGHT = 240; // 40
+static const double BRICK_WIDTH = 60;
+static const double BRICK_HEIGHT = 40; // 40
 static const int BRICKS_ON_SCREEN = 21; // 7 on each row, 3 rows 3*7=21
-static const double BRICK_OFFSET_X = 65; // Padding between each brick in a row
-static const double BRICKS_OFFSET_Y = 51;
+static const double BRICK_OFFSET_X = 145; // Padding between each brick in a row
+static const double BRICKS_OFFSET_Y = 75;
 
 // Ball values
 static const double BALL_RADIUS = 10;

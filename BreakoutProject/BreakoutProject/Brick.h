@@ -14,15 +14,21 @@ public:
 	/*
 	* Not yet a needed implementations into the class
 	void changeState(brickStates state);
+	~Brick();
 	*/
 	Brick(sf::Vector2f pos);
-	~Brick();
 
 	// Interface operations
 	void start() override;
 	void update(float frameTime) override;
 	void resetPosition() override;
 	sf::Shape &getShape()override { return shape; }
+
+	/* 
+	* Methods for controlling life attribute
+	*/
+	void loseLife();
+	bool getIsDead() { return dead; }
 
 private:
 	sf::RectangleShape shape;
@@ -35,4 +41,7 @@ private:
 	*/
 	enum brickStates{NORMAL, DIAMOND, DOUBLE_HIT}; 
 	brickStates state;
+
+	int life = 1; // When this hits zero remove the brick from the game
+	bool dead = false;
 };

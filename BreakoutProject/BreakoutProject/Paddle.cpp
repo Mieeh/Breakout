@@ -60,7 +60,7 @@ void Paddle::resetPosition() {
 	shape.setPosition(sf::Vector2f(0, 0));
 }
 
-void Paddle::collision(Ball& ball) {
+void Paddle::collision(Ball &ball) {
 	// Checks for ball and wall collisions
 	// Ball Collision
 	if (shape.getGlobalBounds().intersects(ball.getShape().getGlobalBounds())) {

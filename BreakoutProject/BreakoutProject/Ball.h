@@ -3,6 +3,7 @@
 #include"GameObject.h"
 #include"Constants.h"
 #include"Brick.h"
+#include"Paddle.h"
 #include<vector>
 
 class Ball : GameObject {
@@ -34,8 +35,16 @@ public:
 	/////////////////////
 	void bricks_collision(std::vector<Brick*> bricks);
 
+	/*
+	* Getters and setters for froozenToPaddle
+	*/
+	void freezToPaddle() { froozenToPaddle = true; }
+	void unfreezeFromPaddle() { froozenToPaddle = false; }
+	bool isFroozenToPaddle() { return froozenToPaddle; }
+
 private:
 	sf::CircleShape shape;
+	bool froozenToPaddle;				// On true set position
 
 	// Move attributes
 	double			 velocityX=0.2;		// Speed of the ball in the x direction

@@ -5,10 +5,6 @@ Brick::Brick(sf::Vector2f pos) {
 	start(); // Used for initializing 
 }
 
-Brick::~Brick() {
-	delete this;
-}
-
 void Brick::start() {
 	// Setup brick size
 	shape.setFillColor(sf::Color::Red);
@@ -19,14 +15,32 @@ void Brick::start() {
 	srand(time(NULL));
 	int rand_ = rand() % 5;
 	if (rand_ >= 0 && rand_ <= 2)
-		state = Brick::brickStates::NORMAL;
+		state = brickStates::NORMAL;
 	else if (rand_ == 3)
-		state = Brick::brickStates::DOUBLE_HIT;
+		state = brickStates::DOUBLE_HIT;
 	else if (rand_ == 4)
-		state = Brick::brickStates::DIAMOND;
+		state = brickStates::DIAMOND;
+
+	if (state == brickStates::DIAMOND) {
+		shape.setFillColor(sf::Color::Cyan);
+	}
+	if (state == brickStates::DOUBLE_HIT) {
+		shape.setFillColor(sf::Color::Green);
+		life++;
+	}
 #pragma endregion
 
 }
+
+void Brick::loseLife() {
+	if (state != brickStates::DIAMOND) {
+		life--;
+		if (life == 0) {
+			dead = true;
+		}
+	}
+}
+
 void Brick::update(float frameTime) {
 
 }
