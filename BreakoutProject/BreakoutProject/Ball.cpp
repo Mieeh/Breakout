@@ -53,13 +53,13 @@ void Ball::bricks_collision(std::vector<Brick*> bricks)
 				velocityY *= -1;
 				return;
 			}
-			if (shape.getPosition().y >= bricks.at(i)->getShape().getPosition().y+BRICK_HEIGHT-4) {
+			if (shape.getPosition().y >= bricks.at(i)->getShape().getPosition().y+BRICK_HEIGHT-11) {
 				//printf("Under");
 				bricks.at(i)->loseLife();
 				velocityY *= -1;
 				return;
 			}
-			if(shape.getPosition().x >= bricks.at(i)->getShape().getPosition().x + BRICK_WIDTH-4) {
+			if(shape.getPosition().x >= bricks.at(i)->getShape().getPosition().x + BRICK_WIDTH-11) {
 				//printf("Right");
 				bricks.at(i)->loseLife();
 				velocityX *= -1;

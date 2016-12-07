@@ -21,6 +21,7 @@ void Brick::start() {
 	else if (rand_ == 4)
 		state = brickStates::DIAMOND;
 
+	state = brickStates::NORMAL;
 	if (state == brickStates::DIAMOND) {
 		shape.setFillColor(sf::Color::Cyan);
 	}

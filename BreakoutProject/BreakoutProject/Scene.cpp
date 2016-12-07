@@ -39,11 +39,11 @@ void Scene::newBoardSetup() {
 	bricks.clear();
 	// Fills the bricks vector with new bricks
 	// This loop represents y value
-	for (int current_column = 0; current_column < 3; current_column++) {
+	for (int current_column = 0; current_column < 4; current_column++) {
 		// This loop represents x value
-		for (int x = 0; x < 3; x++) {
+		for (int x = 0; x < 6; x++) {
 			// Create and fill the bricks vector here
-			bricks.push_back(new Brick(sf::Vector2f((x+0.7) * BRICK_OFFSET_X,(current_column+.5) * BRICKS_OFFSET_Y)));
+			bricks.push_back(new Brick(sf::Vector2f((x+0.16) * BRICK_OFFSET_X,(current_column+.5) * BRICKS_OFFSET_Y)));
 		}
 	}
 }
