@@ -38,7 +38,7 @@ public:
 	/*
 	* Getters and setters for froozenToPaddle
 	*/
-	void freezToPaddle() { froozenToPaddle = true; }
+	void freezToPaddle() { froozenToPaddle = true; velocityScale = 1; }
 	void unfreezeFromPaddle() { froozenToPaddle = false; }
 	bool isFroozenToPaddle() { return froozenToPaddle; }
 
@@ -49,4 +49,7 @@ private:
 	// Move attributes
 	double			 velocityX=0.2;		// Speed of the ball in the x direction
 	double			 velocityY=-0.4;	// Speed of the ball in the y direction
+	double			 velocityScale = 1; // The value which increases the move speed over time
+
+	int			     nearestBrickIndex = 0; // Index of the nearest brick
 };

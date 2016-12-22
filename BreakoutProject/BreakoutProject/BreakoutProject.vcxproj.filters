@@ -45,6 +45,9 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -71,5 +74,10 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

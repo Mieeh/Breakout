@@ -133,6 +133,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -143,6 +144,9 @@
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

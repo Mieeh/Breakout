@@ -1,4 +1,5 @@
 #include"Ball.h"
+#include<cmath>
 
 Ball::Ball() {
 	start();
@@ -18,7 +19,7 @@ void Ball::start() {
 }
 
 void Ball::update(float frameTime) {
-	shape.move(sf::Vector2f(velocityX*frameTime, velocityY*frameTime)); // Move the ball as usual
+	shape.move(sf::Vector2f((velocityX * velocityScale)*frameTime, (velocityY * velocityScale)*frameTime)); // Move the ball as usual
 
 	this->wall_collision();
 }
@@ -44,8 +45,11 @@ void Ball::wall_collision() {
 
 void Ball::bricks_collision(std::vector<Brick*> bricks)
 {
+	
 	for (int i = 0; i < bricks.size(); i++) {
 		if (shape.getGlobalBounds().intersects(bricks.at(i)->getShape().getGlobalBounds())) {
+			velocityScale += 0.05f;
+
 			//bricks.at(i)->getShape().setFillColor(sf::Color::Blue);
 			if (shape.getPosition().y <= bricks.at(i)->getShape().getPosition().y) {
 				//printf("Over");

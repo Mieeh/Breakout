@@ -1,11 +1,15 @@
 #include"Scene.h"
 
 Scene::Scene() {
+	player = new Paddle();
+	ball = new Ball();
+
 	newBoardSetup();
 }
 
 Scene::~Scene() {
-
+	delete player;
+	delete ball;
 }
 
 void Scene::draw(sf::RenderTarget &target) {
@@ -18,6 +22,16 @@ void Scene::draw(sf::RenderTarget &target) {
 	for (Brick *brick : bricks) {
 		target.draw(brick->getShape());
 	}
+
+	#pragma region Render UI
+	/*
+	target.draw(scoreText->getText());
+	scoreText->setText("Score: " + std::to_string(m_Score));
+	*/
+	target.clear(sf::Color::Black);
+	button->draw(target);
+
+	#pragma endregion
 }
 
 void Scene::onEvent(const sf::Event event) {
@@ -33,8 +47,13 @@ void Scene::onEvent(const sf::Event event) {
 }
 
 void Scene::newBoardSetup() {
-	player = new Paddle();
-	ball = new Ball();
+	// Init stuff
+	scoreText = new ui::Text("arial.ttf", 30, sf::Vector2f(0, 0));
+	scoreText->setColor(sf::Color::White);
+
+	button = new ui::Button("Test", sf::Color::Blue, sf::Vector2f(120,50), sf::Vector2f(300, 200));
+
+	m_Score = 0;
 
 	bricks.clear();
 	// Fills the bricks vector with new bricks
@@ -73,6 +92,7 @@ void Scene::update(float frameTime) {
 		if ((*it)->getIsDead()) {
 			delete *it;			  
 			it = bricks.erase(it);
+			m_Score+=10;
 		}
 		else {
 			++it;

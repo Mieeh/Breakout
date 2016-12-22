@@ -44,4 +44,5 @@ private:
 
 	int life = 1; // When this hits zero remove the brick from the game
 	bool dead = false;
+
 };

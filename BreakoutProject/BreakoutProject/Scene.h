@@ -5,6 +5,7 @@
 #include"Ball.h"
 #include"Brick.h"
 #include<vector>
+#include"UI.h"
 
 #ifndef SCENE
 #define SCENE
@@ -33,5 +34,9 @@ private:
 	Paddle *player; // Paddle instance ie player
 	Ball *ball; // Ball instance 
 	std::vector<Brick*> bricks; // All the bricks for the game
+
+	ui::Text *scoreText; // Text that displays current score
+	ui::Button *button;
+	int m_Score; // Number of bricks our player has taken out
 };
 #endif
