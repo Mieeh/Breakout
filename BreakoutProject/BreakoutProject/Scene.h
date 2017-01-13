@@ -5,7 +5,8 @@
 #include"Ball.h"
 #include"Brick.h"
 #include<vector>
-#include"UI.h"
+#include"Button.h"
+#include"TextLabel.h"
 
 #ifndef SCENE
 #define SCENE
@@ -30,13 +31,31 @@ public:
 	/////////////////////
 	void newBoardSetup();
 
+	/////////////////////
+	// \brief Same as newBoardSetup but no value resets
+	//  called when player cleared a level
+	/////////////////////
+	void levelClear();
+
+	/////////////////////
+	// \brief Functions for controlling when to change game state
+	// used by Game.cpp mainly since that's where GameState is located
+	/////////////////////
+	bool getGameOver() { return m_gameOver; }
+	void setGameOver(bool a_bool) { m_gameOver = a_bool; }
+
 private:
 	Paddle *player; // Paddle instance ie player
 	Ball *ball; // Ball instance 
 	std::vector<Brick*> bricks; // All the bricks for the game
 
-	ui::Text *scoreText; // Text that displays current score
-	ui::Button *button;
-	int m_Score; // Number of bricks our player has taken out
+	sf::Font font;
+	ui::TextLabel *scoreText;
+	ui::TextLabel *lifeText;
+
+	int m_score; // Number of bricks our player has taken out
+	int m_life; // Number of tries before the game goes to menu
+
+	bool m_gameOver;
 };
 #endif

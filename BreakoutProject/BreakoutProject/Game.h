@@ -7,7 +7,11 @@
 
 #include"SFML\Graphics.hpp"
 #include"Constants.h"
+
+#include"Menu.h"
 #include"Scene.h"
+
+#include"ParticlePool.h"
 
 class Game {
 public: 
@@ -19,6 +23,9 @@ public:
 private:
 	bool isRunning;
 	sf::RenderWindow renderWindow;
+
 	enum GameState{MENU,PLAYING};
 	GameState gameState;
+
+	ParticlePool particleSpawner;
 };
