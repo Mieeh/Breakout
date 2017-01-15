@@ -7,6 +7,7 @@
 #include<vector>
 #include"Button.h"
 #include"TextLabel.h"
+#include"ParticlePool.h"
 
 #ifndef SCENE
 #define SCENE
@@ -55,6 +56,8 @@ private:
 
 	int m_score; // Number of bricks our player has taken out
 	int m_life; // Number of tries before the game goes to menu
+
+	ParticlePool brickParticlePool;
 
 	bool m_gameOver;
 };

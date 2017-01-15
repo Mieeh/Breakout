@@ -1,10 +1,10 @@
 #include "ParticlePool.h"
 
-void ParticlePool::create(double a_x, double a_y, double a_velocityX, double a_velocityY, int a_lifeTime)
+void ParticlePool::create(double a_x, double a_y, double a_velocityX, double a_velocityY, double a_accX, double a_accY, int a_lifeTime)
 {
 	for (int i = 0; i < POOL_SIZE; i++) {
 		if (!particleArray[i].alive()) {
-			particleArray[i].init(a_x, a_y, a_velocityX, a_velocityY, a_lifeTime);
+			particleArray[i].init(a_x, a_y, a_velocityX, a_velocityY, a_accX, a_accY, a_lifeTime);
 			return;
 		}
 	}

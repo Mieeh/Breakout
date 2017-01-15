@@ -1,6 +1,8 @@
 #include"Game.h"
 #include"Constants.h"
 
+#include<iostream>
+
 Game::~Game() {
 
 }
@@ -23,9 +25,7 @@ int Game::run() {
 		while (renderWindow.pollEvent(event)) { // Event loop starts here
 			if (event.type == sf::Event::Closed)
 				renderWindow.close();
-			if (sf::Keyboard::isKeyPressed)
-				if (event.key.code == sf::Keyboard::Space)
-					particleSpawner.create(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, (rand() % 500 + (-250)),(rand() % 500 + (-250)), 300);
+
 			if(gameState == GameState::PLAYING)
 				mainScene.onEvent(event); 
 			if (gameState == GameState::MENU)
@@ -52,18 +52,15 @@ int Game::run() {
 		* Check what current state the game is in
 		* to decide what scene we should update and draw
 		*/
-		/*
+		
 		if (gameState == GameState::MENU) {
-			mainMenu.update(clock.restart().asMilliseconds());
+			mainMenu.update(clock.restart().asSeconds());
 			mainMenu.draw(renderWindow);
 		}
 		if (gameState == GameState::PLAYING) {
-			mainScene.update(clock.restart().asMilliseconds());
+			mainScene.update(clock.restart().asSeconds());
 			mainScene.draw(renderWindow);
 		}
-		*/
-		particleSpawner.update(clock.restart().asSeconds());
-		particleSpawner.drawParticles(renderWindow);
 
 		renderWindow.display();
 	}

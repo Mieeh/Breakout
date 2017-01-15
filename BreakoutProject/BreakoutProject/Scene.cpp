@@ -27,6 +27,9 @@ void Scene::draw(sf::RenderTarget &target) {
 	target.draw(player->getShape());
 	target.draw(ball->getShape());
 
+	// Draw brick particles, under the bricks 
+	brickParticlePool.drawParticles(target);
+
 	// Draw all the bricks inside the bricks vector
 	// The vector contains pointers to the objects
 	for (Brick *brick : bricks) {
@@ -123,8 +126,9 @@ void Scene::update(float frameTime) {
 	std::vector<Brick*>::iterator it;
 	for (it = bricks.begin(); it != bricks.end(); ) {
 		if ((*it)->getIsDead()) {
-
 			// Spawn particles at bricks.at(it)->getPosition() here
+			for(int i = 0; i < 25; i++)
+				brickParticlePool.create((*it)->getShape().getPosition().x + BRICK_WIDTH/2, (*it)->getShape().getPosition().y + BRICK_HEIGHT/2, ((rand() % 100) -50), ((rand() % 100) -50), 0, 125 + rand() % 100, 250);
 
 			delete *it;			  
 			it = bricks.erase(it);
@@ -139,5 +143,9 @@ void Scene::update(float frameTime) {
 	#pragma region Level Clear
 	if (bricks.size() <= 0)
 		levelClear();
+	#pragma endregion
+
+	#pragma Update Particles
+	brickParticlePool.update(frameTime);
 	#pragma endregion
 }

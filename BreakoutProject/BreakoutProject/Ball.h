@@ -47,9 +47,9 @@ private:
 	bool froozenToPaddle;				// On true freeze ball to paddle, done in Scene.cpp
 
 	// Move attributes
-	double			 velocityX=0.2;		// Speed of the ball in the x direction default: 0.2
-	double			 velocityY=0.4;	// Speed of the ball in the y direction default -0.4
-	double			 velocityScale = 1; // The value which increases the move speed over time
+	double			 velocityX=0.2*1000;		// Speed of the ball in the x direction default: 0.2
+	double			 velocityY=0.4*1000;	// Speed of the ball in the y direction default -0.4
+	double			 velocityScale = 1000; // The value which increases the move speed over time
 
-	int			     nearestBrickIndex = 0; // Index of the nearest brick
+//	int			     nearestBrickIndex = 0; // Index of the nearest brick
 };
