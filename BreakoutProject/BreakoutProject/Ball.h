@@ -5,6 +5,7 @@
 #include"Brick.h"
 #include"Paddle.h"
 #include<vector>
+#include"ParticlePool.h"
 
 class Ball : GameObject {
 public:
@@ -42,14 +43,20 @@ public:
 	void unfreezeFromPaddle() { froozenToPaddle = false; }
 	bool isFroozenToPaddle() { return froozenToPaddle; }
 
+	// Implmented because we need someway to draw the particles to game window
+	void draw(sf::RenderTarget &target); 
+
+	// Calls clear on particleEmitter
+	void clearParticles();
+
 private:
 	sf::CircleShape shape;
 	bool froozenToPaddle;				// On true freeze ball to paddle, done in Scene.cpp
 
 	// Move attributes
-	double			 velocityX=0.2*1000;		// Speed of the ball in the x direction default: 0.2
+	double			 velocityX=0.2*1000;	// Speed of the ball in the x direction default: 0.2
 	double			 velocityY=0.4*1000;	// Speed of the ball in the y direction default -0.4
-	double			 velocityScale = 1000; // The value which increases the move speed over time
+	double			 velocityScale = 1000;	// The value which increases the move speed over time
 
-//	int			     nearestBrickIndex = 0; // Index of the nearest brick
+	ParticlePool particleEmitter;
 };

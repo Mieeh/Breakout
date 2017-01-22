@@ -26,4 +26,6 @@ private:
 
 	enum GameState{MENU,PLAYING};
 	GameState gameState;
+
+	ParticlePool particlePool;
 };

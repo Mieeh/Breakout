@@ -11,7 +11,7 @@ Ball::~Ball() {
 
 void Ball::start() {
 	// Ball setup, color, size and position
-	shape.setFillColor(sf::Color::Blue);
+	shape.setFillColor(sf::Color(187, 15, 31));
 	shape.setRadius(BALL_RADIUS);
 	shape.setPointCount(32);
 	shape.setPosition(sf::Vector2f((WINDOW_WIDTH / 2) - BALL_RADIUS, WINDOW_HEIGHT / 2));
@@ -20,6 +20,11 @@ void Ball::start() {
 
 void Ball::update(float frameTime) {
 	shape.move(sf::Vector2f((velocityX * velocityScale)*frameTime, (velocityY * velocityScale)*frameTime)); // Move the ball as usual
+
+	particleEmitter.update(frameTime); // Updates particle objects and moves lifeTime forwards
+
+	// Creates particles at shape.position with a velocity inverted to this objects velocity
+	particleEmitter.create(shape.getPosition().x + shape.getRadius(), shape.getPosition().y+shape.getRadius(), rand() % 30 - (15), rand() % 30 - (15), 0, 0, 60, sf::Color(rand() % 255, rand() % 255, rand() % 255));
 
 	this->wall_collision();
 }
@@ -77,6 +82,16 @@ void Ball::bricks_collision(std::vector<Brick*> bricks)
 			}
 		}
 	}
+}
+
+void Ball::draw(sf::RenderTarget & target)
+{
+	particleEmitter.drawParticles(target);
+}
+
+void Ball::clearParticles()
+{
+	particleEmitter.clearParticlePool();
 }
 
 void Ball::resetPosition() {

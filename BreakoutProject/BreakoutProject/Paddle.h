@@ -37,7 +37,7 @@ private:
 	int moveDirection;
 	double maxVelocity = 0.75*1000;
 	double currentVelocity;
-	const double accerlation = 0.05*1000;
+	const double accerlation = 0.065*1000;
 
 	enum moveStates{MOVING, NOT_MOVING}; // Paddle move states to controll inertia
 	moveStates moveState_; // Represents the current move state of this paddle

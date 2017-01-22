@@ -23,7 +23,7 @@ public:
 	Scene();
 	~Scene();
 	void onEvent(const sf::Event event);
-	void draw(sf::RenderTarget &target);
+	void draw(sf::RenderTarget &target, sf::RenderWindow &gameWindow);
 	void update(float frameTime);
 
 	/////////////////////
@@ -45,6 +45,9 @@ public:
 	bool getGameOver() { return m_gameOver; }
 	void setGameOver(bool a_bool) { m_gameOver = a_bool; }
 
+	void triggerShake();
+	bool boardCleared();
+
 private:
 	Paddle *player; // Paddle instance ie player
 	Ball *ball; // Ball instance 
@@ -57,8 +60,14 @@ private:
 	int m_score; // Number of bricks our player has taken out
 	int m_life; // Number of tries before the game goes to menu
 
-	ParticlePool brickParticlePool;
+	ParticlePool brickParticlePool; // Particles created on brick destroyed
 
 	bool m_gameOver;
+	
+	// Shake attributes
+	bool m_shake, m_shakeTrigger;
+	double m_shakeTick;
+	const double m_shakeLength = .2;
+	sf::Vector2i m_posBeforeShake;
 };
 #endif

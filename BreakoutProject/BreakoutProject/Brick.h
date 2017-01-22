@@ -24,6 +24,9 @@ public:
 	void resetPosition() override;
 	sf::Shape &getShape()override { return shape; }
 
+	enum brickStates { NORMAL, DIAMOND, DOUBLE_HIT };
+	brickStates getBrickState() { return state; }
+
 	/* 
 	* Methods for controlling life attribute
 	*/
@@ -39,7 +42,6 @@ private:
 	* DIAMOND - Can't be destroyed
 	* DOUBLE_HIT - Required two hits to get destroyed
 	*/
-	enum brickStates{NORMAL, DIAMOND, DOUBLE_HIT}; 
 	brickStates state;
 
 	int life = 1; // When this hits zero remove the brick from the game

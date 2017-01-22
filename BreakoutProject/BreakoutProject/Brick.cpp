@@ -10,20 +10,16 @@ Brick::Brick(sf::Vector2f pos) {
 
 #pragma region Brick State Assign
 	// Give the brick a state choosen randomly out of all the brickStates
-	srand(time(NULL));
-	int rand_ = rand() % 5;
+	int rand_ = rand() % 12;
 
-	if (rand_ == 0 || rand_ == 1) {
+	if (rand_ >= 0 && rand_ <= 7) {
 		state = brickStates::NORMAL;
-		printf("Normal Brick");
 	}
-	if (rand_ == 2 || rand_ == 3) {
+	if (rand_ >= 8 && rand_ <= 10) {
 		state = brickStates::DOUBLE_HIT;
-		printf("Double Brick");
 	}
-	else if (rand_ == 4) {
+	else if (rand_ == 11) {
 		state = brickStates::DIAMOND;
-		printf("Diamond Brick");
 	}
 
 	//state = brickStates::NORMAL;

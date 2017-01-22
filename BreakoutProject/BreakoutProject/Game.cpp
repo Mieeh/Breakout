@@ -53,14 +53,23 @@ int Game::run() {
 		* to decide what scene we should update and draw
 		*/
 		
+		
 		if (gameState == GameState::MENU) {
 			mainMenu.update(clock.restart().asSeconds());
 			mainMenu.draw(renderWindow);
 		}
 		if (gameState == GameState::PLAYING) {
 			mainScene.update(clock.restart().asSeconds());
-			mainScene.draw(renderWindow);
+			mainScene.draw(renderWindow,renderWindow);
 		}
+		
+
+		/*
+		particlePool.create(WINDOW_WIDTH/2, 0, ((rand() % 60) - 30), ((rand() % 100) - 50), 0, 125 + rand() % 100, 350, sf::Color(rand()%255, rand()%255,rand()%255));
+
+		particlePool.update(clock.restart().asSeconds());
+		particlePool.drawParticles(renderWindow);
+		*/
 
 		renderWindow.display();
 	}

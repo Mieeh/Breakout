@@ -15,7 +15,7 @@ void Paddle::start() {
 	moveDirection = 0;
 
 	// Coloring, re-sizing and setting position
-	shape.setFillColor(sf::Color::Red);
+	shape.setFillColor(sf::Color(187,15,31));
 	shape.setSize(sf::Vector2f(PADDLE_WIDTH, PADDLE_HEIGHT));
 	shape.setPosition(WINDOW_WIDTH/2 - (PADDLE_WIDTH / 2), WINDOW_HEIGHT - PADDLE_HEIGHT * 5);
 }

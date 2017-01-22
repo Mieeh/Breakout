@@ -25,6 +25,18 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{1a84096a-a34c-4847-8197-06b4addb7616}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SimpleJSON">
+      <UniqueIdentifier>{2b8939be-8217-4cea-87b6-2e5f5d10700c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SimpleJSON">
+      <UniqueIdentifier>{fe79dd37-c4a1-41ed-9dcb-345dabfd0346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{192a45bd-e39f-4764-a019-cf66c4cd878e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{d24a0f0b-b9c6-4a0a-92d5-6996ac178b80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Paddle.cpp">
@@ -45,12 +57,6 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="TextLabel.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -59,6 +65,21 @@
     </ClCompile>
     <ClCompile Include="ParticlePool.cpp">
       <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\cppinclude\SimpleJSON\JSON.cpp">
+      <Filter>Source Files\SimpleJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\cppinclude\SimpleJSON\JSONValue.cpp">
+      <Filter>Source Files\SimpleJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLabel.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextInput.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,12 +104,6 @@
     <ClInclude Include="Brick.h">
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="TextLabel.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
@@ -97,6 +112,24 @@
     </ClInclude>
     <ClInclude Include="ParticlePool.h">
       <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\cppinclude\SimpleJSON\JSON.h">
+      <Filter>Header Files\SimpleJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\cppinclude\SimpleJSON\JSONValue.h">
+      <Filter>Header Files\SimpleJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaderboard.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLabel.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInput.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

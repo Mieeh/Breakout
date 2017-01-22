@@ -17,7 +17,7 @@ Menu::Menu(sf::RenderWindow &window) {
 	startButton->setTextColor(sf::Color(255, 119, 61));
 	startButton->centerTextWithinRect();
 
-	titleText = new ui::TextLabel(font, "Breakout!", 69);
+	titleText = new ui::TextLabel(font, "Breakout", 69);
 	titleText->setColor(sf::Color(255, 119, 61));
 	titleText->centerText(window);
 	titleText->setPosition(sf::Vector2f(titleText->getPosition().x, titleText->getPosition().y - 145));

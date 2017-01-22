@@ -12,6 +12,8 @@ Scene::Scene() {
 	lifeText = new ui::TextLabel(font, "Life", 22);
 	lifeText->setPosition(sf::Vector2f(scoreText->getActualText().getLocalBounds().width*2.2f, 0));
 
+	m_shakeTrigger = true;
+
 	newBoardSetup();
 }
 
@@ -20,8 +22,11 @@ Scene::~Scene() {
 	delete ball;
 }
 
-void Scene::draw(sf::RenderTarget &target) {
-	target.clear(sf::Color(30, 30, 25));
+void Scene::draw(sf::RenderTarget &target, sf::RenderWindow &gameWindow) {
+	target.clear(sf::Color(30,45,40));
+
+	// Draw ball particles
+	ball->draw(target);
 
 	// Draw the Paddle and the Ball
 	target.draw(player->getShape());
@@ -45,6 +50,19 @@ void Scene::draw(sf::RenderTarget &target) {
 	lifeText->draw(target);
 	 
 	#pragma endregion
+
+	#pragma Screen Shaking
+	if (m_shakeTrigger) {
+		m_posBeforeShake = (gameWindow.getPosition());
+		m_shakeTrigger = false;
+	}
+	if (m_shake) {
+		gameWindow.setPosition(sf::Vector2i(m_posBeforeShake.x + rand() % 20, m_posBeforeShake.y + rand() % 20));
+	}
+	if (!m_shake) {
+		gameWindow.setPosition(m_posBeforeShake);
+	}
+	#pragma endregion
 }
 
 void Scene::onEvent(const sf::Event event) {
@@ -65,6 +83,8 @@ void Scene::newBoardSetup() {
 	m_life = 3;
 	m_gameOver = false;
 
+	brickParticlePool.clearParticlePool();
+
 	bricks.clear();
 	// Fills the bricks vector with new bricks
 	// This loop represents y value
@@ -80,6 +100,7 @@ void Scene::newBoardSetup() {
 void Scene::levelClear() {
 	// Freeze ball to paddle 
 	ball->freezToPaddle();
+	ball->clearParticles();
 
 	// TODO: Create some kind of progression in difficulty here
 
@@ -95,6 +116,26 @@ void Scene::levelClear() {
 	}
 }
 
+void Scene::triggerShake()
+{
+	// Start shaking if we're not already shaking
+	if (!m_shake) {
+		m_shakeTrigger = true;
+		m_shakeTick = 0;
+		m_shake = true;
+	}
+}
+
+bool Scene::boardCleared()
+{
+	// Checks if there's only diamond bricks left, if that is true then board is cleared
+	for (int i = 0; i < bricks.size(); i++) {
+		if (bricks.at(i)->getBrickState() != Brick::brickStates::DIAMOND)
+			return false;
+	}
+	return true;
+}
+
 void Scene::update(float frameTime) {
 	player->update(frameTime);
 
@@ -103,20 +144,27 @@ void Scene::update(float frameTime) {
 
 	#pragma region Game Over Logic
 	if (m_life <= 0) {
+		/* 
+		* LEADERBOARD
+		* When leaderborard logic is implemented
+		* Here is where m_score will be sent to the database
+		*/
 		m_gameOver = true;
 	}
 	#pragma endregion
 
 	#pragma region Ball OOB
 	if (ball->getShape().getPosition().y > WINDOW_HEIGHT) {
+		ball->clearParticles(); // Remove any remaining particles left when the ball crashes
 		m_life--;
 		ball->freezToPaddle();
 	}
 	#pragma endregion
 
 	#pragma region Ball to Paddle freeze
-	if (!ball->isFroozenToPaddle())
+	if (!ball->isFroozenToPaddle()) {
 		ball->update(frameTime);
+	}
 	else
 		ball->getShape().setPosition(sf::Vector2f(player->getShape().getPosition().x + (PADDLE_WIDTH / 2) - BALL_RADIUS, player->getShape().getPosition().y - PADDLE_HEIGHT * 1.75));
 	#pragma endregion
@@ -128,8 +176,9 @@ void Scene::update(float frameTime) {
 		if ((*it)->getIsDead()) {
 			// Spawn particles at bricks.at(it)->getPosition() here
 			for(int i = 0; i < 25; i++)
-				brickParticlePool.create((*it)->getShape().getPosition().x + BRICK_WIDTH/2, (*it)->getShape().getPosition().y + BRICK_HEIGHT/2, ((rand() % 100) -50), ((rand() % 100) -50), 0, 125 + rand() % 100, 250);
+				brickParticlePool.create((*it)->getShape().getPosition().x + BRICK_WIDTH/2, (*it)->getShape().getPosition().y + BRICK_HEIGHT/2, ((rand() % 100) -50), ((rand() % 100) -50), 0, 125 + rand() % 100, 250, (*it)->getShape().getFillColor());
 
+			triggerShake();
 			delete *it;			  
 			it = bricks.erase(it);
 			m_score+=10;
@@ -141,11 +190,21 @@ void Scene::update(float frameTime) {
 	#pragma endregion
 
 	#pragma region Level Clear
-	if (bricks.size() <= 0)
+	if (boardCleared())
 		levelClear();
 	#pragma endregion
 
 	#pragma Update Particles
 	brickParticlePool.update(frameTime);
+	#pragma endregion
+
+	#pragma region Camera Shake
+	if (m_shake) {
+		m_shakeTick += frameTime;
+		if (m_shakeTick >= m_shakeLength) {
+			m_shake = false;
+			m_shakeTick = 0;
+		}
+	}
 	#pragma endregion
 }
